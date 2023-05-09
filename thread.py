@@ -9,6 +9,7 @@ import queue
 import openai
 from infer_test import*
 from cppcheck_test import*
+import os
 
 key = input("Enter a key: ")
 openai.api_key = key
