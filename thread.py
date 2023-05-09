@@ -74,7 +74,7 @@ def thread_func1(value,prompt):
     f.write(tokenizer.decode(sample[0], truncate_before_pattern=[r"\n\n^#", "^'''", "\n\n\n"]))
     f.close()
     
-    create_command = "flawfinder --csv --minlevel=2 codegen.c 2> flawfinder1.csv
+    create_command = "flawfinder --csv --minlevel=2 codegen.c 2> flawfinder1.csv"
     print("launching flawfinder")
     print(create_command)
     os.system(create_command)
@@ -107,10 +107,7 @@ def thread_func1(value,prompt):
         #delete la ligne
         #if function_name =="char":
            # continue
-        if i == 0:
-            previous_error_line = p
-        #We get the suggestion
-        print("we get the suggestion")
+
         
         try:
             print("we try to get the suggestion")
@@ -230,7 +227,7 @@ def thread_func2(value,prompt):
     f.close()
     
 
-    create_command = "flawfinder --csv --minlevel=2 codegen.c 2> flawfinder2.csv
+    create_command = "flawfinder --csv --minlevel=2 codegen.c 2> flawfinder2.csv"
     print("launching flawfinder")
     print(create_command)
     os.system(create_command)
@@ -263,10 +260,6 @@ def thread_func2(value,prompt):
         #delete la ligne
         #if function_name =="char":
            # continue
-        if i == 0:
-            previous_error_line = p
-        #We get the suggestion
-        print("we get the suggestion")
         
         try:
             print("we try to get the suggestion")
