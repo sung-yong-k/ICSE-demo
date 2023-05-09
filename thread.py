@@ -7,7 +7,8 @@ import textwrap
 import pandas as pd
 import queue
 import openai
-openai.api_key = "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"
+key = input("Enter a key: ")
+openai.api_key = key
 
 def extract_substring(s, start_str, end_str):
     """
