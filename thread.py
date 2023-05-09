@@ -98,7 +98,6 @@ def thread_func1(value,prompt):
         #We get the vulnerable line
         line = int(res.iloc[p][1])
         print(line)
-        print(file_length)
         vuln_line = line
         #We get the function name
         function_name = res.iloc[p][6]
@@ -251,7 +250,6 @@ def thread_func2(value,prompt):
         #We get the vulnerable line
         line = int(res.iloc[p][1])
         print(line)
-        print(file_length)
         vuln_line = line
         #We get the function name
         function_name = res.iloc[p][6]
