@@ -180,13 +180,7 @@ def thread_func1(value,prompt):
         
         value.put([weight,CWE,suggestion,vuln_line])
         break
-       ''' try:
-            #We get the appropriate comment for the error
-            comment_error = "Avoid " + CWE + " "  + suggestion+ " at line: "+vuln_line
-            print("comment build")
-        except:
-            print("comment creation error")
-            comment_error ="Avoid " + CWE + " "+ error'''
+
 
 
     
