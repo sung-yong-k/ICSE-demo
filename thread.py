@@ -85,8 +85,9 @@ def thread_func1(value,prompt):
     create_command = "cppcheck --xml-version=2 --enable=all codegen.c 2> cpp1.xml"
     os.system(create_command)
     
+    '''
     create_command = "infer run --bufferoverrun --pulse  -- gcc -c codegen.c"
-    os.system(create_command)
+    os.system(create_command)'''
     
     
     res = pd.read_csv("flawfinder1.csv", header=None)
@@ -157,9 +158,11 @@ def thread_func1(value,prompt):
             print(e)
         
         #infer
+        '''
         bug_type, infer_msg, infer_line = extract_bug_details('infer-out/report.json')
         print("infer: ")
-        print( bug_type, infer_msg, infer_line)
+        print( bug_type, infer_msg, infer_line)'''
+        bug_type = None
         
         #Ranking error
         print("ranking")
@@ -231,9 +234,10 @@ def thread_func2(value,prompt):
     create_command = "cppcheck --xml-version=2 --enable=all codegen.c 2> cpp2.xml"
     os.system(create_command)
     
+    '''
     create_command = "infer run --bufferoverrun --pulse  -- gcc -c codegen.c"
     os.system(create_command)
-    
+    '''
     
     res = pd.read_csv("flawfinder2.csv", header=None)
     print("openning sucessful")
@@ -301,10 +305,13 @@ def thread_func2(value,prompt):
         except Exception as e:
             print(e)
         
+        '''
         #infer
         bug_type, infer_msg, infer_line = extract_bug_details('infer-out/report.json')
         print("infer: ")
         print( bug_type, infer_msg, infer_line)
+        '''
+        bug_type= None
         
         #Ranking error
         print("ranking")
