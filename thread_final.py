@@ -12,6 +12,7 @@ from cppcheck_test import*
 import os
 import time
 
+print("install openai and cppcheck before")
 key = input("Enter a key: ")
 openai.api_key = key
 
@@ -34,7 +35,6 @@ def generation(input):
     {"role": "system", "content": "You are a coding assistant and help the user."},
     {"role": "user", "content": "When I say complete a code, I want you to complete it and give back the function from the beginning."},
     {"role": "assistant", "content": "Sure! Please provide the code snippet that you want me to complete."},
-    {"role": "", "content": "Sure! Please provide the code snippet that you want me to complete."},
     {"role": "user", "content": input}] )
 
     #print(response)
