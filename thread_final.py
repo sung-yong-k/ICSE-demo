@@ -134,12 +134,12 @@ def thread_func1(value,prompt):
                     print("on ajoute une erreur répétée")
         
         #cppcheck
+        cpp_cwe = None
         try:
         #error_info.append([message,cwe,line])
             cpp_result = extract_error_info("cpp1.xml")
             print("cpp:")
             print(cpp_result)
-            cpp_cwe = None
             if len(cpp_result) == 0:
                 print("hola")
                 cpp_error=None
@@ -294,12 +294,12 @@ def thread_func2(value,prompt):
                     print("on ajoute une erreur répétée")
         
         #cppcheck
+        cpp_cwe = None
         try:
         #error_info.append([message,cwe,line])
             cpp_result = extract_error_info("cpp2.xml")
             print("cpp:")
             print(cpp_result)
-            cpp_cwe = None
             if len(cpp_result) == 0:
                 print("hola")
                 cpp_error=None
