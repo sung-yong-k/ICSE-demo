@@ -383,7 +383,7 @@ if __name__ == "__main__":
                 if result1[1] == None or result2[1] == 0:
                     print("pas eu de vuln detected")
                     break
-                if result1[0] >= result2[0]:
+                if result1[0] > result2[0]:
                     comment_error = "Complete the following code and do not generate the vulnerability" + result1[1] + " "  + result1[2]
                 else:
                     comment_error = "Complete the following code and do not generate the vulnerability" + result2[1] + " "  + result2[2]
