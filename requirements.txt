@@ -12,3 +12,4 @@ sentencepiece
 gradio
 sentencepiece
 flawfinder
+scipy
