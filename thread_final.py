@@ -64,7 +64,7 @@ def thread_func1(value,prompt):
     weight = 0
     print("Thread 1 is running...")
     inputs = tokenizer(prompt, return_tensors="pt").to(0)
-    sample = model.generate(**inputs, max_length=300)
+    sample = model.generate(**inputs, max_length=600)
     print(tokenizer.decode(sample[0], truncate_before_pattern=[r"\n\n^#", "^'''", "\n\n\n"]))
     path = "codegen.c"
     f = open(path, "w")
@@ -202,7 +202,7 @@ def thread_func2(value,prompt):
         "text-generation",
         model=model_gpt4all,
         tokenizer=tokenizer_gpt4all,
-        max_length=512,
+        max_length=600,
         temperature=0.1,
         top_p=0.95,
         repetition_penalty=1.15
