@@ -92,6 +92,7 @@ def thread_func1(value,prompt):
     except Exception as e:
         print(e)
         print("Flawfinder null")
+        flawfinder_detected = False
     for p in range(1,2):
         ignore_list =[]
         CWE = None
