@@ -380,7 +380,7 @@ if __name__ == "__main__":
                 t1.join()
                 t2.join()
 
-                if result1[1] == None or result2[1] == 0:
+                if result1[1] == None and result2[1] == None:
                     print("pas eu de vuln detected")
                     break
                 if result1[0] > result2[0]:
