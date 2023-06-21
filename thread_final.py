@@ -71,7 +71,7 @@ def thread_func1(value,prompt):
     f.write(tokenizer.decode(sample[0], truncate_before_pattern=[r"\n\n^#", "^'''", "\n\n\n"]))
     f.close()
     
-    create_command = "flawfinder --csv --minlevel=2 codegen.c 2> flawfinder1.csv"
+    create_command = "flawfinder --csv --minlevel=2 codegen.c > flawfinder1.csv"
     print("launching flawfinder")
     print(create_command)
     os.system(create_command)
@@ -228,7 +228,7 @@ def thread_func2(value,prompt):
     f.close()
     
 
-    create_command = "flawfinder --csv --minlevel=2 gpt4all.c 2> flawfinder2.csv"
+    create_command = "flawfinder --csv --minlevel=2 gpt4all.c > flawfinder2.csv"
     print("launching flawfinder")
     print(create_command)
     os.system(create_command)
