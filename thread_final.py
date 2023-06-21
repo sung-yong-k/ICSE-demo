@@ -68,7 +68,7 @@ def thread_func1(value,prompt):
     print(tokenizer.decode(sample[0], truncate_before_pattern=[r"\n\n^#", "^'''", "\n\n\n"]))
     path = "codegen.c"
     f = open(path, "w")
-    f.write(extract_substring(tokenizer.decode(sample[0], truncate_before_pattern=[r"\n\n^#", "^'''", "\n\n\n"]),"#include","}"))
+    f.write(tokenizer.decode(sample[0], truncate_before_pattern=[r"\n\n^#", "^'''", "\n\n\n"]))
     f.close()
     
     create_command = "flawfinder --csv --minlevel=2 codegen.c > flawfinder1.csv"
