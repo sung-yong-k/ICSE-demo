@@ -349,7 +349,6 @@ if __name__ == "__main__":
                 line = input.readlines()
                 input.close()
                 total_lines = len(line)
-                lenght_list.append(total_lines)
                 copy_lines = int(total_lines * 0.5)
                 prompt = "".join(line[:copy_lines])
                 start_time = time.time()
