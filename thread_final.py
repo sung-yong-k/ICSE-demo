@@ -139,6 +139,7 @@ def thread_func1(value,prompt):
             cpp_result = extract_error_info("cpp1.xml")
             print("cpp:")
             print(cpp_result)
+            cpp_cwe = None
             if len(cpp_result) == 0:
                 print("hola")
                 cpp_error=None
@@ -298,6 +299,7 @@ def thread_func2(value,prompt):
             cpp_result = extract_error_info("cpp2.xml")
             print("cpp:")
             print(cpp_result)
+            cpp_cwe = None
             if len(cpp_result) == 0:
                 print("hola")
                 cpp_error=None
