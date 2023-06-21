@@ -180,6 +180,9 @@ def thread_func1(value,prompt):
             CWE = None
             suggestion =""
             vuln_line = None
+
+        print([weight,CWE,suggestion,vuln_line])
+        time.sleep(5)
         value.put([weight,CWE,suggestion,vuln_line])
         break
 
@@ -336,7 +339,9 @@ def thread_func2(value,prompt):
             CWE = None
             suggestion =""
             vuln_line = None
-            
+        
+        print([weight,CWE,suggestion,vuln_line])
+        time.sleep(5)
         value.put([weight,CWE,suggestion,vuln_line])
         break
 
