@@ -253,7 +253,7 @@ def thread_func2(value,prompt):
         print(e)
         print("Flawfinder null")
         flawfinder_detected = False
-    for p in range(1,len(res)):
+    for p in range(1,2):
         ignore_list =[]
         
         CWE = None
