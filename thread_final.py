@@ -9,6 +9,8 @@ import queue
 import openai
 from infer_test import*
 from cppcheck_test import*
+import os
+import time
 
 key = input("Enter a key: ")
 openai.api_key = key
@@ -40,7 +42,7 @@ def generation(input):
         x = response['choices']
         #print( x[0]['message']['content'])
         answer = x[0]['message']['content']
-        #code= extract_substring(answer,"#include","}")
+        code= extract_substring(answer,"#include","}")
         return answer
 
 
@@ -56,15 +58,7 @@ model_gpt4all = AutoModelForCausalLM.from_pretrained("nomic-ai/gpt4all-j",
                                              load_in_8bit=True,
                                              device_map="auto")
 
-prompt= '''#include <stdio.h>
-#include <stdlib.h>
-int main(int argc, char *argv[]) {
-    int value = 0;
-    //read in the value from the command line
-    if (argc > 1) {
-        value = atoi(argv[1]);
-    }
-    //calculate the correct value with the offset of 1000 added'''
+
 
 def thread_func1(value,prompt):
     weight = 0
@@ -183,7 +177,6 @@ def thread_func1(value,prompt):
         elif CWE == None:
             print("no vuln detected")
             quit()
-
         value.put([weight,CWE,suggestion,vuln_line])
         break
 
@@ -287,13 +280,7 @@ def thread_func2(value,prompt):
                 print(CWE)
             except:
                 print("CWE get error")
-            '''
-            if CWE == "CWE-362" or CWE=="CWE-120":
-                for d in range (2,len(res)):
-                    if res.iloc[d][10] == "CWE-362" or res.iloc[d][10] == "CWE-120":
-                        ignore_list.append(int(res.iloc[d][1]))
-                        print("on ajoute une erreur répétée"
-            '''
+
             for d in range (p+1,len(res)):
                 if res.iloc[d][10] == CWE:
                     ignore_list.append(int(res.iloc[d][1]))
@@ -351,23 +338,47 @@ def thread_func2(value,prompt):
 
 if __name__ == "__main__":
 #fix si flawfinder est null
-    q1 = queue.Queue()
-    q2 = queue.Queue()
-    t1 = threading.Thread(target=thread_func1, args=(q1,prompt))
-    t2 = threading.Thread(target=thread_func2, args=(q2,prompt))
-    
-    t1.start()
-    t2.start()
-    
-    result1 = q1.get()
-    result2 = q2.get()
-    
-    t1.join()
-    t2.join()
+    report_text=""
+    for root, dirs, files in os.walk("prompt"):
+        for file_name in files:
+            print("file name is: ")
+            print(file_name)
+            if file_name != ".DS_Store":
+                file_path = os.path.join(root, file_name)
+                input = open(source_path+"/"+file_name, "r",encoding='utf-8')
+                line = input.readlines()
+                input.close()
+                total_lines = len(line)
+                lenght_list.append(total_lines)
+                copy_lines = int(total_lines * 0.5)
+                prompt = "".join(line[:copy_lines])
+                start_time = time.time()
+                q1 = queue.Queue()
+                q2 = queue.Queue()
+                t1 = threading.Thread(target=thread_func1, args=(q1,prompt))
+                t2 = threading.Thread(target=thread_func2, args=(q2,prompt))
+                
+                t1.start()
+                t2.start()
+                
+                result1 = q1.get()
+                result2 = q2.get()
+                
+                t1.join()
+                t2.join()
 
-    if result1[0] >= result2[0]:
-        comment_error = "Complete the following code and do not generate the vulnerability" + result1[1] + " "  + result1[2]
-    else:
-        comment_error = "Write the following code and do not generate the vulnerability" + result2[1] + " "  + result2[2]
-    user_prompt = comment_error+"\n"+prompt
-    print(generation(user_prompt))
+                if result1[0] >= result2[0]:
+                    comment_error = "Complete the following code and do not generate the vulnerability" + result1[1] + " "  + result1[2]
+                else:
+                    comment_error = "Complete the following code and do not generate the vulnerability" + result2[1] + " "  + result2[2]
+                user_prompt = comment_error+"\n"+prompt
+                answer =  generation(user_prompt)
+                final_time = time.time()-start_time
+                destination_file_path = os.path.join("production", file_name)
+                code = open(destination_file_path,"w")
+                code.write(answer)
+                code.close()
+                report_text=report_text+file_name+":"+comment_error+ "time : "+ str(final_time)+"\n"
+    report=open("production/report.txt","w")
+    report.write(report_text)
+    report.close()
