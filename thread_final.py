@@ -225,12 +225,12 @@ def thread_func2(value,prompt):
     f.close()
     
 
-    create_command = "flawfinder --csv --minlevel=2 codegen.c 2> flawfinder2.csv"
+    create_command = "flawfinder --csv --minlevel=2 gpt4all.c 2> flawfinder2.csv"
     print("launching flawfinder")
     print(create_command)
     os.system(create_command)
     
-    create_command = "cppcheck --xml-version=2 --enable=all codegen.c 2> cpp2.xml"
+    create_command = "cppcheck --xml-version=2 --enable=all gpt4all.c 2> cpp2.xml"
     os.system(create_command)
     
     '''
