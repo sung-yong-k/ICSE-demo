@@ -43,7 +43,7 @@ def generation(input):
         #print( x[0]['message']['content'])
         answer = x[0]['message']['content']
         code= extract_substring(answer,"#include","}")
-        return answer
+        return code
 
 
 
@@ -68,7 +68,7 @@ def thread_func1(value,prompt):
     print(tokenizer.decode(sample[0], truncate_before_pattern=[r"\n\n^#", "^'''", "\n\n\n"]))
     path = "codegen.c"
     f = open(path, "w")
-    f.write(tokenizer.decode(sample[0], truncate_before_pattern=[r"\n\n^#", "^'''", "\n\n\n"]))
+    f.write(extract_substring(tokenizer.decode(sample[0], truncate_before_pattern=[r"\n\n^#", "^'''", "\n\n\n"]),"#include","}"))
     f.close()
     
     create_command = "flawfinder --csv --minlevel=2 codegen.c > flawfinder1.csv"
@@ -227,7 +227,7 @@ def thread_func2(value,prompt):
     print(wrap_text_preserve_newlines(gpt4all_output[0]['generated_text']))
     path = "gpt4all.c"
     f = open(path, "w")
-    f.write(gpt4all_output[0]['generated_text'])
+    f.write(extract_substring(gpt4all_output[0]['generated_text'],"#include","}"))
     f.close()
     
 
