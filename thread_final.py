@@ -142,14 +142,15 @@ def thread_func1(value,prompt):
             print("cpp:")
             print(cpp_result)
             if len(cpp_result) == 0:
-                print("hola")
+                print("cppcchekc empty")
                 cpp_error=None
                 cpp_cwe = None
                 cpp_line = None
             else:
-                cpp_error=cppcheck[0][0]
-                cpp_cwe=cppcheck[0][1]
-                cpp_line=cppcheck[0][2]
+                print("cppcheck not empty")
+                cpp_error=cpp_result[0][0]
+                cpp_cwe=cpp_result[0][1]
+                cpp_line=cpp_result[0][2]
         except Exception as e:
             print(e)
         
@@ -302,14 +303,15 @@ def thread_func2(value,prompt):
             print("cpp:")
             print(cpp_result)
             if len(cpp_result) == 0:
-                print("hola")
+                print("cppcheck empty")
                 cpp_error=None
                 cpp_cwe = None
                 cpp_line = None
             else:
-                cpp_error=cppcheck[0][0]
-                cpp_cwe=cppcheck[0][1]
-                cpp_line=cppcheck[0][2]
+                print("cppcheck not empty")
+                cpp_error=cpp_result[0][0]
+                cpp_cwe=cpp_result[0][1]
+                cpp_line=cpp_result[0][2]
             
         except Exception as e:
             print(e)
