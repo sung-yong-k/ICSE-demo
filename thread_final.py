@@ -12,7 +12,7 @@ from cppcheck_test import*
 import os
 import time
 
-print("install openai and cppcheck before")
+print("install openai and cppcheck and create production before before")
 key = input("Enter a key: ")
 openai.api_key = key
 
