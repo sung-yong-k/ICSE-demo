@@ -385,6 +385,7 @@ if __name__ == "__main__":
                 else:
                     comment_error = "Complete the following code and do not generate the vulnerability" + result2[1] + " "  + result2[2]
                 user_prompt = comment_error+"\n"+prompt
+                print("on lance la generation")
                 answer =  generation(user_prompt)
                 final_time = time.time()-start_time
                 destination_file_path = os.path.join("production", file_name)
