@@ -345,7 +345,7 @@ if __name__ == "__main__":
             print(file_name)
             if file_name != ".DS_Store":
                 file_path = os.path.join(root, file_name)
-                input = open(source_path+"/"+file_name, "r",encoding='utf-8')
+                input = open("prompt/"+file_name, "r",encoding='utf-8')
                 line = input.readlines()
                 input.close()
                 total_lines = len(line)
