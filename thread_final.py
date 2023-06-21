@@ -176,7 +176,10 @@ def thread_func1(value,prompt):
             weight=1
         elif CWE == None:
             print("no vuln detected")
-            quit()
+            weight = 0
+            CWE = None
+            suggestion =""
+            vuln_line = None
         value.put([weight,CWE,suggestion,vuln_line])
         break
 
@@ -329,7 +332,10 @@ def thread_func2(value,prompt):
             vuln_line = cpp_line
             weight=1
         elif CWE == None:
-            quit()
+            weight = 0
+            CWE = None
+            suggestion =""
+            vuln_line = None
             
         value.put([weight,CWE,suggestion,vuln_line])
         break
@@ -366,6 +372,9 @@ if __name__ == "__main__":
                 t1.join()
                 t2.join()
 
+                if result1[1] == None or result2[1] == 0:
+                    print("pas eu de vuln detected")
+                    break
                 if result1[0] >= result2[0]:
                     comment_error = "Complete the following code and do not generate the vulnerability" + result1[1] + " "  + result1[2]
                 else:
