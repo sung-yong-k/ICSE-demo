@@ -13,3 +13,4 @@ gradio
 sentencepiece
 flawfinder
 scipy
+xformers
