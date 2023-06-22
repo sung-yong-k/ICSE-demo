@@ -394,7 +394,7 @@ if __name__ == "__main__":
                 code = open(destination_file_path,"w")
                 code.write(gpt_msg)
                 code.close()
-                report_text=report_text+file_name+":"+comment_error+ "time : "+ str(final_time)+"\n"
+                report_text=report_text+file_name+":"+ "time : "+ str(final_time)+"\n"
     report=open("production/report.txt","w")
     report.write(report_text)
     report.close()
