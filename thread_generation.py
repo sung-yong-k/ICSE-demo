@@ -387,7 +387,6 @@ if __name__ == "__main__":
                 t2.join()
 
                 gpt_msg = result2[-1]
-                user_prompt = comment_error
                 print("on lance la generation")
                 #answer =  generation(prompt, gpt_msg, user_prompt)
                 final_time = time.time()-start_time
