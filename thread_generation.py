@@ -385,29 +385,15 @@ if __name__ == "__main__":
                 
                 #t1.join()
                 t2.join()
-'''
-                if result1[1] == None and result2[1] == None:
-                    print("pas eu de vuln detected")
-                    break
-                if result1[0] > result2[0]:
-                    comment_error = "Complete the following code and do not generate the vulnerability" + result1[1] + " "  + result1[2]
-                else:
-                    comment_error = "Complete the following code and do not generate the vulnerability" + result2[1] + " "  + result2[2]
-'''
-                if result2[1] == None:
-                    print("pas eu de vuln detected")
-                    break
-                else:
-                    comment_error = "The previous code has the vulnerability" + result2[1] + " at line:"+result2[3]+". Complete again the following code from scratch without generating the vulnerability: "
-                
+
                 gpt_msg = result2[-1]
                 user_prompt = comment_error
                 print("on lance la generation")
-                answer =  generation(prompt, gpt_msg, user_prompt)
+                #answer =  generation(prompt, gpt_msg, user_prompt)
                 final_time = time.time()-start_time
-                destination_file_path = os.path.join("production", file_name)
+                destination_file_path = os.path.join("production_gen", "time_"+str(int(final_time))+"_"+file_name)
                 code = open(destination_file_path,"w")
-                code.write(answer)
+                code.write(gpt_msg)
                 code.close()
                 report_text=report_text+file_name+":"+comment_error+ "time : "+ str(final_time)+"\n"
     report=open("production/report.txt","w")

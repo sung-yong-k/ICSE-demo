@@ -385,15 +385,7 @@ if __name__ == "__main__":
                 
                 #t1.join()
                 t2.join()
-'''
-                if result1[1] == None and result2[1] == None:
-                    print("pas eu de vuln detected")
-                    break
-                if result1[0] > result2[0]:
-                    comment_error = "Complete the following code and do not generate the vulnerability" + result1[1] + " "  + result1[2]
-                else:
-                    comment_error = "Complete the following code and do not generate the vulnerability" + result2[1] + " "  + result2[2]
-'''
+
                 if result2[1] == None:
                     print("pas eu de vuln detected")
                     break
