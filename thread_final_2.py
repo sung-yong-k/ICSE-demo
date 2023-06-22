@@ -390,7 +390,7 @@ if __name__ == "__main__":
                     print("pas eu de vuln detected")
                     break
                 else:
-                    comment_error = "The previous code has the vulnerability" + result2[1] + " at line:"+result2[3]+". Complete again the following code from scratch without generating the vulnerability: "
+                    comment_error = "The previous code has the vulnerability" + result2[1] + " at line:"+str(result2[3])+". Complete again the following code from scratch without generating the vulnerability: "
                 
                 gpt_msg = result2[-1]
                 user_prompt = comment_error
